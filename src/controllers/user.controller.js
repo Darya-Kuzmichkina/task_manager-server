@@ -1,5 +1,5 @@
 const express = require('express');
-const {getData,getIdData,updateData,deleteData}= require('../servicies/user.servicies')
+const {getData,getIdData,updateData,deleteData,patchData}= require('../servicies/user.servicies')
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -43,5 +43,14 @@ router.delete('/:id', async (req, res) => {
          res.status(404).send(error.message)
     }
 })
-
+router.patch('/:id', async (req, res) => {
+    try {
+        const data = req.body;
+        const id = req.params.id
+        const result = await patchData(id,data)
+        res.send(result);
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+})
 module.exports = router;

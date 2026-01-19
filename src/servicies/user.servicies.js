@@ -1,4 +1,4 @@
-const {getDataBD,getDataIdBD,updateDataBD,deleteDataBD} = require('../repository/user.repository')
+const {getDataBD,getDataIdBD,updateDataBD,deleteDataBD,patchDataBD} = require('../repository/user.repository')
 
 async function getData() {
     const result = await getDataBD();
@@ -17,4 +17,8 @@ async function deleteData(id) {
     const result = await deleteDataBD(id);
     return result;
 }
-module.exports={getData,getIdData,updateData,deleteData}
+async function patchData(id,data) {
+    const result = await patchDataBD(id,data)
+    return result;
+}
+module.exports={getData,getIdData,updateData,deleteData, patchData}
