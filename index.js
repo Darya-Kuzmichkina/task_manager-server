@@ -3,8 +3,10 @@ const bodyParser = require('body-parser');
 const controller1 = require('./src/controllers/user.controller')
 const controller2 = require('./src/controllers/api.controller')
 const controller3 = require('./src/controllers/task.controller')
+const cors= require('cors');
 const app = express();
 
+app.use('/', cors());
 app.use('/', bodyParser.json());
 app.use('/user', controller1)
 app.use('/api', controller2)

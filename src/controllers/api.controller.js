@@ -1,7 +1,8 @@
 const express = require('express');
+const { checkUserBody } = require('../helper/middleware')
 const {createData,authorithtionData}= require('../servicies/api.servicies')
 const router = express.Router();
-router.post('/reg', async (req, res) => {
+router.post('/reg',checkUserBody, async (req, res) => {
     try{
         const {name,surname,email,pwd}= req.body;
         const result = await createData(name,surname,email,pwd)
